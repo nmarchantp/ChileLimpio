@@ -1,70 +1,133 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chile Limpio</title>
 
     <style>
-        label{
-            display: block;
-            float: center;
-            width: 150px;
+        body {
+            margin: 20px 0;
+            font-family: 'verdana';
+            font-weight: 300;
+            font-size: 15px;
+            width: 300px;
         }
-        div{
+
+        label {
+            width: 300px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        div {
             margin: 10px;
+        }
+
+        input {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 4px;
+            font-family: 'verdana';
+            width: 300px;
+            margin-top: 10px;
+            font-size: 15px;
         }
     </style>
 </head>
+
 <body>
     <form action="" id="formulario">
         <div>
             <label for="rut">Rut</label>
-            <input type="text" id="rut">
+            <input type="text" id="rut" name="rut">
         </div>
         <div>
             <label for="primer_apellido">Primer Apellido</label>
-            <input type="text" id="primer_apellido">
+            <input type="text" id="primer_apellido" name="primer_apellido" >
         </div>
         <div>
             <label for="segundo_apellido">Segundo Apellido</label>
-            <input type="text" id="segundo_apellido">
+            <input type="text" id="segundo_apellido" name="segundo_apellido">
         </div>
         <div>
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre">
+            <input type="text" id="nombre" name="nombre">
         </div>
         <div>
             <label for="fecha_nacimiento">Fecha Nacimiento</label>
-            <input type="date" id="fecha_nacimiento">
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
         </div>
         <div>
             <label for="edad">Edad</label>
-            <input type="number" id="edad">
+            <input type="number" id="edad" name="edad">
         </div>
         <div>
             <label for="genero">Genero</label>
-            <input type="text" id="genero">
+            <input type="text" id="genero" name="genero">
         </div>
         <div>
             <label for="email">Correo Electronico</label>
-            <input type="email" id="email">
+            <input type="email" id="email" name="email">
         </div>
         <div>
             <label for="celular">Celular</label>
-            <input type="tel" id="celular">
+            <input type="tel" id="celular" name="celular">
         </div>
         <div>
             <label for="profesion">Profesion</label>
-            <input type="text" id="profesion">
+            <input type="text" id="profesion" name="profesion">
         </div>
         <div>
             <label for="motivacion">Motivacion</label>
-            <input type="text" id="motivacion">
+            <input type="text" id="motivacion" name="motivacion">
         </div>
 
         <input type="submit" value="Enviar">
     </form>
     <div id="error"></div>
-<script src="app.js"></script>
+    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#formulario").validate({
+                rules: {
+                    rut: {
+                        required: true,
+                        minlength: 9
+                    },
+                    apellido_paterno: {
+                        required: true,
+                        number: true,    
+                        minlength: 3                    
+                    },
+                    nombre: {
+                        required: true,
+                    }
+
+                },
+                messages: {
+                    rut:{
+                        minlength:"Rut debe ser sin puntos y con guión",
+                        required:"El Rut es requerido"
+                    },
+                    apellido_paterno:{
+                        minlength:"Debe ingresar un apellido de minimo 3 carácteres y maximo 30",
+                        required:"El apellido es requerido"                        
+                    },
+                    nombre:{
+                        minlength:"Debe ingresar un nombre de minimo 3 carácteres y maximo 30",
+                        required:"El nombre es requerido"
+                    }
+                }
+            });
+
+        });
+    </script>
 </body>
+
 </html>
